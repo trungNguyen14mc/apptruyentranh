@@ -3,7 +3,9 @@ package edu.fpt.apptruyentranh.data;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class TruyenTranh {
+import java.io.Serializable;
+
+public class TruyenTranh implements Serializable {
     private String tenTruyen,tenChap,linkAnh,tenTacGia,namXuatBan;
 
     public TruyenTranh(){

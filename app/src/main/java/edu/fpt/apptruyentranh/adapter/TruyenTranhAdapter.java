@@ -37,10 +37,8 @@ public class TruyenTranhAdapter extends ArrayAdapter<TruyenTranh> {
             LayoutInflater inflater = (LayoutInflater)ct.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_list_truyen, null);
         }
-
         if (arr.size() > 0){
             TruyenTranh truyenTranh = this.arr.get(position);
-
             TextView tvTenTruyen = convertView.findViewById(R.id.tvTenTruyen);
             TextView tvTenChap = convertView.findViewById(R.id.tvTenChap);
             ImageView imgAnhTruyen = convertView.findViewById(R.id.imgAnhTruyen);
