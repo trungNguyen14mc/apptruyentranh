@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -24,21 +26,18 @@ public class ListTruyenTranh extends AppCompatActivity implements GetTruyen {
     TruyenTranhAdapter adapter;
     ArrayList<TruyenTranh> truyenTranhArrayList;
 
-    Button btnDocTruyen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_truyen_tranh);
 
-        btnDocTruyen = findViewById(R.id.btn_doc_truyen);
-        btnDocTruyen.setOnClickListener(v -> {
-            startActivity(new Intent(ListTruyenTranh.this, NoiDungTruyenTranh.class));
-        });
+
 
         init();
         anhXa();
         setUp();
-        setClick();
+        setClick(gvdDSTruyen);
 
         new ApiGetTruyen(this).execute();
     }
@@ -75,7 +74,16 @@ public class ListTruyenTranh extends AppCompatActivity implements GetTruyen {
     private void setUp(){
         gvdDSTruyen.setAdapter(adapter);
     }
-    private void setClick(){}
+    private void setClick(GridView gridView){
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(getApplicationContext(),NoiDungTruyenTranh.class);
+                intent.putExtra("truyenTranh",truyenTranhArrayList.get(i));
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public void mStart() {

@@ -3,15 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/activity_hello.xml" value="0.1403985507246377" />
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/activity_list_truyen_tranh.xml" value="0.1403985507246377" />
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/activity_noi_dung_truyen_tranh.xml" value="0.1403985507246377" />
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/fragment_login.xml" value="0.1403985507246377" />
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/fragment_sign_up.xml" value="0.1403985507246377" />
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/item_lis_truyen.xml" value="0.1716485507246377" />
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/item_list_truyen.xml" value="0.22" />
-        <entry key="..\:/Android Networking/apptruyentranh/app/src/main/res/layout/item_list_truyen_tranh.xml" value="0.1403985507246377" />
+        <entry key="..\:/C5_networking/apptruyentranh/app/src/main/res/layout/activity_doc_truyen.xml" value="0.30434782608695654" />
+        <entry key="..\:/C5_networking/apptruyentranh/app/src/main/res/layout/activity_list_truyen_tranh.xml" value="0.19895833333333332" />
+        <entry key="..\:/C5_networking/apptruyentranh/app/src/main/res/layout/activity_noi_dung_truyen_tranh.xml" value="0.30434782608695654" />
+        <entry key="..\:/C5_networking/apptruyentranh/app/src/main/res/layout/content_doc_truyen.xml" value="0.30434782608695654" />
+        <entry key="..\:/C5_networking/apptruyentranh/app/src/main/res/layout/fragment_second.xml" value="0.30434782608695654" />
+        <entry key="..\:/C5_networking/apptruyentranh/app/src/main/res/layout/item_list_truyen.xml" value="0.3138586956521739" />
       </map>
     </option>
   </component>
