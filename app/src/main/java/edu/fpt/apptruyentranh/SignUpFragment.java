@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,13 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import edu.fpt.apptruyentranh.retrofit.ApiAppDocTruyen;
+import edu.fpt.apptruyentranh.retrofit.RetrofitClient;
+import edu.fpt.apptruyentranh.utils.Utils;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class SignUpFragment extends Fragment {
 
     private Button btnSignUp;
@@ -24,7 +32,9 @@ public class SignUpFragment extends Fragment {
     NavController mController;
 
     TextInputLayout textInputEmail;
-    TextInputLayout textInputPassWord;
+    TextInputLayout textInputPassWord,textInputUsername,textInputfullname;
+    CompositeDisposable compositeDisposable=new CompositeDisposable();
+    ApiAppDocTruyen apiAppDocTruyen;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,7 +72,7 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        apiAppDocTruyen= RetrofitClient.getInstane(Utils.BASE_URL_hai).create(ApiAppDocTruyen.class);
         mController = Navigation.findNavController(requireActivity(), R.id.fragmentContainerView);
         btnSignUp = view.findViewById(R.id.btn_sign_up);
         
@@ -72,10 +82,7 @@ public class SignUpFragment extends Fragment {
                 if (!validateEmail() || !validatePassWord()){
                     return;
                 }
-                String input = "Email: " + textInputPassWord.getEditText().getText().toString();
-                input += "\n";
-                input = "PassWord: " + textInputPassWord.getEditText().getText().toString();
-                Toast.makeText(getActivity(), "Đăng kí thành công", Toast.LENGTH_SHORT).show();
+                DangkyUser();
             }
         });
 
@@ -91,5 +98,31 @@ public class SignUpFragment extends Fragment {
 
         textInputEmail = view.findViewById(R.id.text_in_put_email);
         textInputPassWord = view.findViewById(R.id.text_in_put_pass_word);
+        textInputfullname = view.findViewById(R.id.text_in_put_fullName);
+        textInputUsername = view.findViewById(R.id.text_in_put_Username);
+    }
+
+    private void DangkyUser() {
+       String username=textInputUsername.getEditText().getText().toString().trim();
+        String pass=textInputPassWord.getEditText().getText().toString().trim();
+        String email=textInputEmail.getEditText().getText().toString().trim();
+        String fullname=textInputfullname.getEditText().getText().toString().trim();
+
+        compositeDisposable.add(apiAppDocTruyen.dangky(username,pass,email,fullname).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(
+                        userModel -> {
+                            if (userModel.isSuccess()){
+                                Toast.makeText(getContext(),userModel.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        },throwable -> {}
+
+                ));
+    }
+
+    @Override
+    public void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+
     }
 }

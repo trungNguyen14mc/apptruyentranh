@@ -17,6 +17,19 @@
         android:gravity="center"
         android:textSize="36dp"
         android:padding="20dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_in_put_Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        app:counterMaxLength="30"
+        app:counterEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -24,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true"
-        app:counterMaxLength="15"
+        app:counterMaxLength="50"
         app:counterEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -40,12 +53,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         app:errorEnabled="true"
+        app:counterMaxLength="30"
+        app:counterEnabled="true"
         app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="PassWord"
             android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_in_put_fullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+        app:counterMaxLength="35"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fullname"
+            android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -62,11 +92,11 @@
         android:layout_marginTop="20dp"
         android:text="Logout"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_sing_up"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:text="Do you want to sign up for an account ?"/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_sing_up"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:text="Do you want to sign up for an account ?"/>-->
 </LinearLayout>

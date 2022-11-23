@@ -15,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.UserHandle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,23 +30,39 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
 
+import edu.fpt.apptruyentranh.retrofit.ApiAppDocTruyen;
+import edu.fpt.apptruyentranh.retrofit.RetrofitClient;
+import edu.fpt.apptruyentranh.utils.Utils;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class LoginFragment extends Fragment {
 
     private TextView tvSingUp;
     private Button btnLogin;
 
 
-    TextInputLayout textInputEmail;
+    
     TextInputLayout textInputUser;
     TextInputLayout textInputPassWord;
-
+    CompositeDisposable compositeDisposable=new CompositeDisposable();
+    ApiAppDocTruyen apiAppDocTruyen;
     NavController mController;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        apiAppDocTruyen= RetrofitClient.getInstane(Utils.BASE_URL_hai).create(ApiAppDocTruyen.class);
     }
 
+    @Override
+    public void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+
+
+    }
 
     private boolean validateUser(){
         String userName = textInputUser.getEditText().getText().toString().trim();
@@ -61,21 +78,7 @@ public class LoginFragment extends Fragment {
             return true;
         }
     }
-
-    private boolean validateEmail(){
-        String emailInput = textInputEmail.getEditText().getText().toString().trim();
-
-        if (emailInput.isEmpty()) {
-            textInputEmail.setError("Field can't be empty");
-            return false;
-        }else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
-            textInputEmail.setError("Please enter a valid email anddress");
-            return false;
-        }else {
-            textInputEmail.setError(null);
-            return true;
-        }
-    }
+    
 
     private boolean validatePassWord(){
         String passWordInPut = textInputPassWord.getEditText().getText().toString().trim();
@@ -117,22 +120,47 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( !validateEmail() ||!validateUser() || !validatePassWord()){
+                if (!validateUser() || !validatePassWord()){
                     return;
+                }else {
+                    checkLogin();
                 }
-                String input = "Email: " + textInputPassWord.getEditText().getText().toString();
-                input += "\n";
-                input = "UserName: " + textInputUser.getEditText().getText().toString();
-                input += "\n";
-                input = "PassWord: " + textInputPassWord.getEditText().getText().toString();
 
-                mController.navigate(R.id.listTruyenTranh);
+
             }
         });
-
-        textInputEmail = view.findViewById(R.id.text_in_put_layout);
+        
         textInputUser = view.findViewById(R.id.text_in_put_user);
         textInputPassWord = view.findViewById(R.id.text_in_put_pass_word);
     }
 
+    private void checkLogin() {
+        String userName = textInputUser.getEditText().getText().toString().trim();
+        String passWordInPut = textInputPassWord.getEditText().getText().toString().trim();
+
+        compositeDisposable.add(apiAppDocTruyen.getUser(userName,passWordInPut).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(
+                        userModel -> {
+                            if(userModel.isSuccess()){
+
+                                Utils.user_current=userModel.getResult().get(0);
+                                Log.d("sssssssssssssss", "checkLogin: "+Utils.user_current.getPassword());
+                                if(Utils.user_current.getUsername().equals(userName)&&Utils.user_current.getPassword().equals(passWordInPut)){
+                                    Toast.makeText(getContext(),userModel.getMessage(),Toast.LENGTH_SHORT).show();
+                                    mController.navigate(R.id.listTruyenTranh);
+                                }
+                                else {
+                                    Toast.makeText(getContext(),"email hoặc mật khẩu không đúng",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else {
+                                Toast.makeText(getContext(),userModel.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        },throwable -> {
+                            Toast.makeText(getContext(),"email hoặc mật khẩu không đúng",Toast.LENGTH_SHORT).show();
+                        }
+                ));
+        }
 }
+
+

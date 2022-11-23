@@ -19,15 +19,14 @@
             android:text="Truyện Tranh"
             android:textColor="@color/white"
             android:textSize="36dp" />
+
     </RelativeLayout>
-
-
-    <GridView
-        android:layout_marginTop="20sp"
-        android:id="@+id/gvdDSTruyen"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="3" />
+        android:id="@+id/reyc_list"
+        android:layout_height="match_parent"/>
+
+
 
 
 </LinearLayout>

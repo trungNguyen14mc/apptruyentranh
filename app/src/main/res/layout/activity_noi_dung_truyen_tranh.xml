@@ -1,90 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="12dp"
+    android:fillViewport="true"
     tools:context=".NoiDungTruyenTranh">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:layout_height="wrap_content">
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:background="#3C3535">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#3C3535">
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:text="Nội Dung Truyện Tranh"
+              android:textColor="@color/white"
+              android:textSize="36dp" />
+      </RelativeLayout>
+      <ImageView
+          android:layout_marginTop="10sp"
+          android:layout_width="150dp"
+          android:id="@+id/imgNoiDung"
+          android:src="@drawable/ic_launcher_background"
+          android:layout_gravity="center"
+          android:layout_height="200dp"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:text="Tên Truyện"
+          android:gravity="center"
+          android:textSize="27dp"
+          android:textStyle="bold"
+          android:id="@+id/txtTenTruyen"
+          android:layout_height="wrap_content"/>
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <TextView
+              android:id="@+id/txtTacGia"
+              android:text="Tên Tác Giả: sds"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+          <TextView
+              android:id="@+id/txtNamXb"
+              android:text="năm Xuất bản"
+              android:layout_below="@id/txtTacGia"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Nội Dung Truyện Tranh"
-            android:textColor="@color/white"
-            android:textSize="36dp" />
-    </RelativeLayout>
-    <ImageView
-        android:layout_marginTop="20sp"
-        android:layout_width="150dp"
-        android:id="@+id/imgNoiDung"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_gravity="center"
-        android:layout_height="200dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:text="Tên Truyện"
-        android:gravity="center"
-        android:textSize="27dp"
-        android:textStyle="bold"
-        android:id="@+id/txtTenTruyen"
-        android:layout_height="wrap_content"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/txtTacGia"
-            android:text="Tên Tác Giả: sds"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/txtNamXb"
-            android:text="năm Xuất bản"
-            android:layout_below="@id/txtTacGia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="Mô tả:"
-            android:layout_below="@id/txtNamXb"
-            android:id="@+id/txtMota"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="20sp"
-            android:id="@+id/btnDocTruyen"
-            android:text="Đọc Truyện"
-            android:backgroundTint="@android:color/holo_orange_light"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/motaTruyen"
-            android:text="        Câu chuyện kể về Monkey D. Luffy, một chàng trai trẻ tuổi, được thần tượng thời thơ ấu của mình là Shanks Tóc Đỏ truyền cảm hứng trở thành một hải tặc, bắt đầu cuộc hành trình tại East Blue tìm kiếm kho báu danh giá và trở thành Tân Vua Hải Tặc. "
+          <Button
+              android:id="@+id/btnDocTruyen"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:layout_marginEnd="20sp"
+              android:backgroundTint="@android:color/holo_orange_light"
+              android:text="Đọc Truyện" />
+      </RelativeLayout>
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:text="Bình Luận"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"/>
-    <ScrollView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:id="@+id/rec_comment"
-            android:layout_height="wrap_content"/>
-    </ScrollView>
-</LinearLayout>
+      <TextView
+          android:id="@+id/txtMota"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+
+          android:text="Mô tả:" />
+      <TextView
+          android:id="@+id/motaTruyen"
+          android:text="        Câu chuyện kể về Monkey D. Luffy, một chàng trai trẻ tuổi, được thần tượng thời thơ ấu của mình là Shanks Tóc Đỏ truyền cảm hứng trở thành một hải tặc, bắt đầu cuộc hành trình tại East Blue tìm kiếm kho báu danh giá và trở thành Tân Vua Hải Tặc. "
+
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:text="Bình Luận"
+          android:textStyle="bold"
+          android:layout_marginTop="10dp"
+          android:layout_height="wrap_content"/>
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          >
+
+          <EditText
+              android:id="@+id/edit_comment"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:hint="Comment" />
+          <ImageView
+                android:id="@+id/imgsend"
+              android:src="@drawable/ic_baseline_send_24"
+              android:layout_alignParentRight="true"
+              android:layout_width="50dp"
+              android:layout_height="50dp"/>
+      </RelativeLayout>
+
+      <ListView
+
+          android:id="@+id/listview_comment"
+          android:layout_width="match_parent"
+          android:layout_height="1000dp" />
+
+  </LinearLayout>
+
+</ScrollView>

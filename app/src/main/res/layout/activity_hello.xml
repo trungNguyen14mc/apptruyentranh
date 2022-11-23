@@ -4,27 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#00BCD4"
+    android:background="#FFEB3B"
     android:padding="12dp"
     tools:context=".HelloActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lê Văn Duy"
+        android:text="Nguyễn Văn Trung"
         android:textSize="36dp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="200dp"
         android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PH15324"
+        android:text="Ph15459"
         android:textSize="36dp"
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:textColor="@color/black"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="App Đọc Truyện Tranh"
+        android:textSize="36dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"/>
 
 </LinearLayout>

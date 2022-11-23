@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="8dp"
+    app:cardCornerRadius="6dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_width="50dp"
+            android:id="@+id/icon"
+            android:layout_marginEnd="10dp"
+            android:layout_height="50dp"/>
+
+        <TextView
+            android:id="@+id/tvIDnguoidung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/icon"
+            android:text="Người dùng 01"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/hint"
+            android:layout_toRightOf="@id/icon"
+            android:background="@android:color/holo_red_light"
+            android:layout_below="@id/tvIDnguoidung"
+            android:layout_height="2dp"/>
+        <TextView
+            android:text="Truyện rất hay"
+            android:layout_toRightOf="@id/icon"
+            android:layout_below="@id/hint"
+            android:layout_width="match_parent"
+            android:id="@+id/comment"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
