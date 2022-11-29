@@ -17,11 +17,6 @@
         android:gravity="center"
         android:textSize="36dp"
         android:padding="20dp"/>
-
-
-
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_in_put_user"
         android:layout_width="match_parent"

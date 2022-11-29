@@ -31,13 +31,13 @@ public interface ApiAppDocTruyen {
     Observable<commentModel> getComment(
             @Field("idtruyen") String username
 
-
     );
     @POST("postcomment.php")
     @FormUrlEncoded
     Observable<UserModel> post_comment(
             @Field("idtruyen") int idtruyen,
             @Field("noidung") String noidung,
-            @Field("iduser") int iduser
+            @Field("iduser") int iduser,
+            @Field("time") String time
     );
 }

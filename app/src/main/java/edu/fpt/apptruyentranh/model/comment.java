@@ -4,14 +4,22 @@ public class comment {
     int idComment;
     String noidung;
     int idtruyen;
-
+    String gio_ngay;
     int idUser;
 
-    public comment(int idComment, String noidung, int idtruyen, int idUser) {
+    public comment(int idComment, String noidung, int idtruyen, String gio_ngay, int idUser) {
         this.idComment = idComment;
         this.noidung = noidung;
         this.idtruyen = idtruyen;
+        this.gio_ngay = gio_ngay;
         this.idUser = idUser;
+    }
+    public String getGio_ngay() {
+        return gio_ngay;
+    }
+
+    public void setGio_ngay(String gio_ngay) {
+        this.gio_ngay = gio_ngay;
     }
 
     public String getNoidung() {

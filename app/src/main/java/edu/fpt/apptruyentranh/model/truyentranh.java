@@ -9,7 +9,6 @@ public class truyentranh implements Serializable {
     String namXuatBan;
     String anhBia;
     String mota;
-    String arrayAnh;
 
     public int getIdtruyen() {
         return idtruyen;
@@ -57,13 +56,5 @@ public class truyentranh implements Serializable {
 
     public void setMota(String mota) {
         this.mota = mota;
-    }
-
-    public String getArrayAnh() {
-        return arrayAnh;
-    }
-
-    public void setArrayAnh(String arrayAnh) {
-        this.arrayAnh = arrayAnh;
     }
 }

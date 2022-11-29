@@ -18,7 +18,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import edu.fpt.apptruyentranh.adapter.CommentAdapter;
@@ -84,21 +87,24 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
     }
 
     private void postComment() {
-        Utils.user_current.getId();
-        Log.d("sssssssssssss", "postComment: "+Utils.user_current.getId());
-//        compositeDisposable.add(apiAppDocTruyen.post_comment(truyenTranh.getIdtruyen(),editTextcomment.getText().toString(),Utils.user_current.getId()).subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread()).subscribe(
-//                        commentModel -> {
-//                            if(commentModel.isSuccess()){
-//                                Toast.makeText(getApplicationContext(),commentModel.getMessage(),Toast.LENGTH_SHORT).show();
-//                                editTextcomment.setText("");
-//                            }
-//
-//                        },throwable -> {}
-//
-//
-//                ));
-//        getData();
+//        Utils.user_current.getId();
+//        Log.d("sssssssssssss", "postComment: "+Utils.user_current.getId());
+
+        Date currentTime = Calendar.getInstance().getTime();
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        compositeDisposable.add(apiAppDocTruyen.post_comment(truyenTranh.getIdtruyen(),editTextcomment.getText().toString(),Utils.user_current.getId(),date).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(
+                        commentModel -> {
+                            if(commentModel.isSuccess()){
+                                Toast.makeText(getApplicationContext(),commentModel.getMessage(),Toast.LENGTH_SHORT).show();
+                                editTextcomment.setText("");
+                            }
+
+                        },throwable -> {}
+
+
+                ));
+
     }
 
     private void getData(){
@@ -123,7 +129,7 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
         tvName=findViewById(R.id.txtTenTruyen);
         tvTenTg=findViewById(R.id.txtTacGia);
         tvNamxb=findViewById(R.id.txtNamXb);
-        tvmota=findViewById(R.id.txtMota);
+        tvmota=findViewById(R.id.motaTruyen);
         imgAnhbia=findViewById(R.id.imgNoiDung);
         btnDocTruyen=findViewById(R.id.btnDocTruyen);
         listView=findViewById(R.id.listview_comment);
