@@ -10,13 +10,15 @@
         <entry key="..\:/C5_networking/apptruyentranh/app/src/main/res/layout/fragment_second.xml" value="0.30434782608695654" />
         <entry key="..\:/C5_networking/apptruyentranh/app/src/main/res/layout/item_list_truyen.xml" value="0.3138586956521739" />
         <entry key="..\:/apptruyentranh/app/src/main/res/drawable-v24/ic_baseline_send_24.xml" value="0.177" />
+        <entry key="..\:/apptruyentranh/app/src/main/res/layout/activity_doc_truyen.xml" value="0.19895833333333332" />
         <entry key="..\:/apptruyentranh/app/src/main/res/layout/activity_hello.xml" value="0.30434782608695654" />
         <entry key="..\:/apptruyentranh/app/src/main/res/layout/activity_list_truyen_tranh.xml" value="0.30434782608695654" />
         <entry key="..\:/apptruyentranh/app/src/main/res/layout/activity_log_in.xml" value="0.30434782608695654" />
-        <entry key="..\:/apptruyentranh/app/src/main/res/layout/activity_noi_dung_truyen_tranh.xml" value="0.22" />
+        <entry key="..\:/apptruyentranh/app/src/main/res/layout/activity_noi_dung_truyen_tranh.xml" value="0.5" />
         <entry key="..\:/apptruyentranh/app/src/main/res/layout/fragment_login.xml" value="0.30434782608695654" />
         <entry key="..\:/apptruyentranh/app/src/main/res/layout/fragment_sign_up.xml" value="0.33" />
-        <entry key="..\:/apptruyentranh/app/src/main/res/layout/item_binh_luan.xml" value="0.27447916666666666" />
+        <entry key="..\:/apptruyentranh/app/src/main/res/layout/item_anh.xml" value="0.19791666666666666" />
+        <entry key="..\:/apptruyentranh/app/src/main/res/layout/item_binh_luan.xml" value="0.5" />
         <entry key="..\:/apptruyentranh/app/src/main/res/layout/item_list_truyen.xml" value="0.30434782608695654" />
       </map>
     </option>

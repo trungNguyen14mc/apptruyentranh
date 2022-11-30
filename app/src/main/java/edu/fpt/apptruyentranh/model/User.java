@@ -1,18 +1,18 @@
 package edu.fpt.apptruyentranh.model;
 
 public class User {
-    int id;
+    int idUser ;
     String username;
     String email;
     String password;
     String fullname;
 
     public int getId() {
-        return id;
+        return idUser ;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idUser  = id;
     }
 
     public String getUsername() {

@@ -1,7 +1,9 @@
 package edu.fpt.apptruyentranh;
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -54,6 +56,7 @@ public class LoginFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         apiAppDocTruyen= RetrofitClient.getInstane(Utils.BASE_URL_hai).create(ApiAppDocTruyen.class);
+
     }
 
     @Override
@@ -138,15 +141,22 @@ public class LoginFragment extends Fragment {
         String userName = textInputUser.getEditText().getText().toString().trim();
         String passWordInPut = textInputPassWord.getEditText().getText().toString().trim();
 
+
         compositeDisposable.add(apiAppDocTruyen.getUser(userName,passWordInPut).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
                         userModel -> {
                             if(userModel.isSuccess()){
 
                                 Utils.user_current=userModel.getResult().get(0);
-                                Log.d("sssssssssssssss", "checkLogin: "+Utils.user_current.getPassword());
+                                String idUser= String.valueOf(Utils.user_current.getId());
                                 if(Utils.user_current.getUsername().equals(userName)&&Utils.user_current.getPassword().equals(passWordInPut)){
                                     Toast.makeText(getContext(),userModel.getMessage(),Toast.LENGTH_SHORT).show();
+                                    SharedPreferences preferences= getContext().getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor=preferences.edit();
+
+
+                                    editor.putString("idUser",idUser);
+                                    editor.commit();
                                     mController.navigate(R.id.listTruyenTranh);
                                 }
                                 else {

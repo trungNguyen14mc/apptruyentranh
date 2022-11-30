@@ -10,6 +10,7 @@ public class truyentranh implements Serializable {
     String anhBia;
     String mota;
 
+
     public int getIdtruyen() {
         return idtruyen;
     }

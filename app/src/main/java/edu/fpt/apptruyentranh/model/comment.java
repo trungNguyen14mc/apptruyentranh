@@ -4,30 +4,15 @@ public class comment {
     int idComment;
     String noidung;
     int idtruyen;
-    String gio_ngay;
+    String ngay_gio;
     int idUser;
 
-    public comment(int idComment, String noidung, int idtruyen, String gio_ngay, int idUser) {
+    public comment(int idComment, String noidung, int idtruyen, String ngay_gio, int idUser) {
         this.idComment = idComment;
         this.noidung = noidung;
         this.idtruyen = idtruyen;
-        this.gio_ngay = gio_ngay;
+        this.ngay_gio = ngay_gio;
         this.idUser = idUser;
-    }
-    public String getGio_ngay() {
-        return gio_ngay;
-    }
-
-    public void setGio_ngay(String gio_ngay) {
-        this.gio_ngay = gio_ngay;
-    }
-
-    public String getNoidung() {
-        return noidung;
-    }
-
-    public void setNoidung(String noidung) {
-        this.noidung = noidung;
     }
 
     public int getIdComment() {
@@ -38,12 +23,28 @@ public class comment {
         this.idComment = idComment;
     }
 
+    public String getNoidung() {
+        return noidung;
+    }
+
+    public void setNoidung(String noidung) {
+        this.noidung = noidung;
+    }
+
     public int getIdtruyen() {
         return idtruyen;
     }
 
     public void setIdtruyen(int idtruyen) {
         this.idtruyen = idtruyen;
+    }
+
+    public String getNgay_gio() {
+        return ngay_gio;
+    }
+
+    public void setNgay_gio(String ngay_gio) {
+        this.ngay_gio = ngay_gio;
     }
 
     public int getIdUser() {

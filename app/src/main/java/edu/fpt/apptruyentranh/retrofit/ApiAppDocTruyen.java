@@ -2,6 +2,7 @@ package edu.fpt.apptruyentranh.retrofit;
 
 import edu.fpt.apptruyentranh.model.UserModel;
 import edu.fpt.apptruyentranh.model.commentModel;
+import edu.fpt.apptruyentranh.model.imgModel;
 import edu.fpt.apptruyentranh.model.truyentranhModel;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
@@ -30,6 +31,12 @@ public interface ApiAppDocTruyen {
     @FormUrlEncoded
     Observable<commentModel> getComment(
             @Field("idtruyen") String username
+
+    );
+    @POST("getcontent.php")
+    @FormUrlEncoded
+    Observable<imgModel> getcontent(
+            @Field("idtruyen") int id
 
     );
     @POST("postcomment.php")

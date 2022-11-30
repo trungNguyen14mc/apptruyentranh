@@ -70,7 +70,6 @@ public class ListTruyenTranh extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         compositeDisposable.clear();
-        Log.d("TAG", "onDestroy: "+"compositeDisposable.clear");
     }
 
     private void init(){

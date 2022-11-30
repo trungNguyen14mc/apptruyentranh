@@ -54,6 +54,7 @@ public class CommentAdapter extends BaseAdapter {
         comment comment=list.get(i);
         ((TextView) viewProduct.findViewById(R.id.tvIDnguoidung)).setText("NGười Dùng: "+comment.getIdUser());
         ((TextView) viewProduct.findViewById(R.id.comment)).setText(comment.getNoidung());
+        ((TextView) viewProduct.findViewById(R.id.tvtime)).setText(comment.getNgay_gio());
         notifyDataSetChanged();
         return viewProduct;
     }

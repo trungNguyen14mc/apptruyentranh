@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,11 +48,14 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
     CompositeDisposable compositeDisposable=new CompositeDisposable();
     ApiAppDocTruyen apiAppDocTruyen;
     ImageView imgsend;
+    int idUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noi_dung_truyen_tranh);
         apiAppDocTruyen= RetrofitClient.getInstane(Utils.BASE_URL_hai).create(ApiAppDocTruyen.class);
+        SharedPreferences preferences= getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
+        idUser= Integer.parseInt(preferences.getString("idUser",""));
         anhXa();
         initView();
         getData();
@@ -75,6 +80,7 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),DocTruyenActivity.class);
+                i.putExtra("idtruyen",truyenTranh.getIdtruyen());
                 startActivity(i);
             }
         });
@@ -92,12 +98,13 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
 
         Date currentTime = Calendar.getInstance().getTime();
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        compositeDisposable.add(apiAppDocTruyen.post_comment(truyenTranh.getIdtruyen(),editTextcomment.getText().toString(),Utils.user_current.getId(),date).subscribeOn(Schedulers.io())
+        compositeDisposable.add(apiAppDocTruyen.post_comment(truyenTranh.getIdtruyen(),editTextcomment.getText().toString(),idUser,date).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
                         commentModel -> {
                             if(commentModel.isSuccess()){
                                 Toast.makeText(getApplicationContext(),commentModel.getMessage(),Toast.LENGTH_SHORT).show();
                                 editTextcomment.setText("");
+                                commentAdapter.notifyDataSetChanged();
                             }
 
                         },throwable -> {}

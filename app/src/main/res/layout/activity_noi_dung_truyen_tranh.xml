@@ -94,12 +94,14 @@
               android:layout_width="match_parent"
               android:layout_height="50dp"
               android:hint="Comment" />
+
           <ImageView
-                android:id="@+id/imgsend"
-              android:src="@drawable/ic_baseline_send_24"
+              android:layout_marginTop="5dp"
+              android:id="@+id/imgsend"
+              android:layout_width="30dp"
+              android:layout_height="30dp"
               android:layout_alignParentRight="true"
-              android:layout_width="50dp"
-              android:layout_height="50dp"/>
+              android:src="@drawable/ic_baseline_send_24" />
       </RelativeLayout>
 
       <ListView
