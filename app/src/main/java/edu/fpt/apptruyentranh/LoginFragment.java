@@ -167,7 +167,7 @@ public class LoginFragment extends Fragment {
                                 Toast.makeText(getContext(),userModel.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                         },throwable -> {
-                            Toast.makeText(getContext(),"email hoặc mật khẩu không đúng",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"looxi server",Toast.LENGTH_SHORT).show();
                         }
                 ));
         }
