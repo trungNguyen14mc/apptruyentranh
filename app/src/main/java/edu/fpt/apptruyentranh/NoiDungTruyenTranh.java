@@ -1,6 +1,7 @@
 package edu.fpt.apptruyentranh;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.fpt.apptruyentranh.adapter.CommentAdapter;
+import edu.fpt.apptruyentranh.model.NoiDungComment;
 import edu.fpt.apptruyentranh.model.comment;
 import edu.fpt.apptruyentranh.model.truyentranh;
 import edu.fpt.apptruyentranh.retrofit.ApiAppDocTruyen;
@@ -44,7 +47,8 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
     ListView listView;
     CommentAdapter commentAdapter;
     EditText editTextcomment;
-    List<comment> list;
+    Toolbar toolbar;
+    List<NoiDungComment> list;
     CompositeDisposable compositeDisposable=new CompositeDisposable();
     ApiAppDocTruyen apiAppDocTruyen;
     ImageView imgsend;
@@ -59,9 +63,21 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
         anhXa();
         initView();
         getData();
+        ActionBar();
 
     }
-
+    private void ActionBar() {
+        toolbar =findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle(truyenTranh.getTenTruyen());
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -72,8 +88,8 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
         truyenTranh= (truyentranh) getIntent().getSerializableExtra("chitiet");
 
         tvName.setText(truyenTranh.getTenTruyen());
-        tvTenTg.setText(truyenTranh.getTenTacGia());
-        tvNamxb.setText(truyenTranh.getNamXuatBan());
+        tvTenTg.setText("Tên Tác Giả"+truyenTranh.getTenTacGia());
+        tvNamxb.setText("Năm: "+truyenTranh.getNamXuatBan());
         Glide.with(getApplicationContext()).load(truyenTranh.getAnhBia()).into(imgAnhbia);
         tvmota.setText(truyenTranh.getMota());
         btnDocTruyen.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +97,7 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),DocTruyenActivity.class);
                 i.putExtra("idtruyen",truyenTranh.getIdtruyen());
+                i.putExtra("soluongchap",truyenTranh.getSoluongchap());
                 startActivity(i);
             }
         });
@@ -92,11 +109,12 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
         });
     }
 
-    private void postComment() {
-//        Utils.user_current.getId();
-//        Log.d("sssssssssssss", "postComment: "+Utils.user_current.getId());
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
-        Date currentTime = Calendar.getInstance().getTime();
+    private void postComment() {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         compositeDisposable.add(apiAppDocTruyen.post_comment(truyenTranh.getIdtruyen(),editTextcomment.getText().toString(),idUser,date).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
@@ -104,7 +122,7 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
                             if(commentModel.isSuccess()){
                                 Toast.makeText(getApplicationContext(),commentModel.getMessage(),Toast.LENGTH_SHORT).show();
                                 editTextcomment.setText("");
-                                commentAdapter.notifyDataSetChanged();
+                                getData();
                             }
 
                         },throwable -> {}
@@ -130,7 +148,6 @@ public class NoiDungTruyenTranh extends AppCompatActivity {
 
 
                 ));
-
     }
     private void anhXa() {
         tvName=findViewById(R.id.txtTenTruyen);

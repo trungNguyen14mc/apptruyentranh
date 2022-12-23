@@ -1,6 +1,9 @@
 package edu.fpt.apptruyentranh;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,10 +35,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class ListTruyenTranh extends AppCompatActivity {
     RecyclerView recyclerView;
     TruyenTranhAdapter adapter;
+    DrawerLayout drawerLayout;
     List<truyentranh> truyenTranhArrayList;
     CompositeDisposable compositeDisposable=new CompositeDisposable();
     ApiAppDocTruyen apiAppDocTruyen;
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +49,20 @@ public class ListTruyenTranh extends AppCompatActivity {
         anhXa();
         getData();
         init();
+        ActionBar();
     }
-
+    private void ActionBar() {
+        toolbar =findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(android.R.drawable.ic_menu_sort_by_size);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+    }
     private void getData() {
         compositeDisposable.add(apiAppDocTruyen.getalltruyen().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
@@ -78,6 +94,7 @@ public class ListTruyenTranh extends AppCompatActivity {
 
     }
     private void anhXa(){
+        drawerLayout=findViewById(R.id.drawerlayout);
         recyclerView = findViewById(R.id.reyc_list);
 
     }

@@ -6,7 +6,6 @@ public class imgModel {
     boolean success;
     String message;
     List<img_truyen> result;
-
     public boolean isSuccess() {
         return success;
     }

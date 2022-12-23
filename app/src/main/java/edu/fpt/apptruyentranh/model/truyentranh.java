@@ -9,7 +9,15 @@ public class truyentranh implements Serializable {
     String namXuatBan;
     String anhBia;
     String mota;
+    int soluongchap;
 
+    public int getSoluongchap() {
+        return soluongchap;
+    }
+
+    public void setSoluongchap(int soluongchap) {
+        this.soluongchap = soluongchap;
+    }
 
     public int getIdtruyen() {
         return idtruyen;

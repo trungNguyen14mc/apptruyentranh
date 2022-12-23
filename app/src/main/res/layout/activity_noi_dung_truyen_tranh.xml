@@ -2,20 +2,31 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="1000dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="12dp"
     android:fillViewport="true"
     tools:context=".NoiDungTruyenTranh">
   <LinearLayout
       android:layout_width="match_parent"
       android:orientation="vertical"
       android:layout_height="wrap_content">
+      <androidx.cardview.widget.CardView
+          android:elevation="16dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+      <androidx.appcompat.widget.Toolbar
+          android:layout_width="match_parent"
+          android:id="@+id/toolbar"
+          android:layout_height="?attr/actionBarSize"
+          app:title="Mô Tả"
+          android:background="#FFFFFF">
+      </androidx.appcompat.widget.Toolbar>
+      </androidx.cardview.widget.CardView>
       <RelativeLayout
           android:layout_width="match_parent"
           android:layout_height="60dp"
           android:background="#3C3535">
-
           <TextView
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -72,12 +83,14 @@
           android:layout_height="wrap_content"
 
           android:text="Mô tả:" />
+
       <TextView
           android:id="@+id/motaTruyen"
-          android:text="        Câu chuyện kể về Monkey D. Luffy, một chàng trai trẻ tuổi, được thần tượng thời thơ ấu của mình là Shanks Tóc Đỏ truyền cảm hứng trở thành một hải tặc, bắt đầu cuộc hành trình tại East Blue tìm kiếm kho báu danh giá và trở thành Tân Vua Hải Tặc. "
-
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"/>
+
+          android:layout_height="wrap_content"
+          android:text="        Câu chuyện kể về Monkey D. Luffy, một chàng trai trẻ tuổi, được thần tượng thời thơ ấu của mình là Shanks Tóc Đỏ truyền cảm hứng trở thành một hải tặc, bắt đầu cuộc hành trình tại East Blue tìm kiếm kho báu danh giá và trở thành Tân Vua Hải Tặc. " />
+
       <TextView
           android:layout_width="match_parent"
           android:text="Bình Luận"
@@ -105,11 +118,8 @@
       </RelativeLayout>
 
       <ListView
-
           android:id="@+id/listview_comment"
           android:layout_width="match_parent"
-          android:layout_height="10000dp" />
-
+          android:layout_height="wrap_content" />
   </LinearLayout>
-
 </ScrollView>

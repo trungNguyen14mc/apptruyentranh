@@ -5,7 +5,7 @@ import java.util.List;
 public class commentModel {
     boolean success;
     String message;
-    List<comment> result;
+    List<NoiDungComment> result;
 
     public boolean isSuccess() {
         return success;
@@ -23,11 +23,11 @@ public class commentModel {
         this.message = message;
     }
 
-    public List<comment> getResult() {
+    public List<NoiDungComment> getResult() {
         return result;
     }
 
-    public void setResult(List<comment> result) {
+    public void setResult(List<NoiDungComment> result) {
         this.result = result;
     }
 }

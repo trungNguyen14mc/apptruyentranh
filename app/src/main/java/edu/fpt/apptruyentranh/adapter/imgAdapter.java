@@ -37,10 +37,14 @@ public class imgAdapter extends RecyclerView.Adapter<imgAdapter.myViewHolder> {
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
         img_truyen truyentranh=list.get(position);
         Glide.with(context).load(truyentranh.getLink_anh()).into(holder.img);
+
     }
 
     @Override
     public int getItemCount() {
+        if(list==null){
+            return 0;
+        }
         return list.size();
     }
 

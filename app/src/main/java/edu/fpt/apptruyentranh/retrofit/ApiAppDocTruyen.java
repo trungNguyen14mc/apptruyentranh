@@ -36,7 +36,8 @@ public interface ApiAppDocTruyen {
     @POST("getcontent.php")
     @FormUrlEncoded
     Observable<imgModel> getcontent(
-            @Field("idtruyen") int id
+            @Field("idtruyen") int id,
+            @Field("chapter") int chapter
 
     );
     @POST("postcomment.php")

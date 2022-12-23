@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.fpt.apptruyentranh.R;
+import edu.fpt.apptruyentranh.model.NoiDungComment;
 import edu.fpt.apptruyentranh.model.comment;
 
 public class CommentAdapter extends BaseAdapter {
     Context mcontext;
-    List<comment> list;
+    List<NoiDungComment> list;
 
-    public CommentAdapter(Context mcontext, List<comment> list) {
+    public CommentAdapter(Context mcontext, List<NoiDungComment> list) {
         this.mcontext = mcontext;
         this.list = list;
     }
@@ -51,8 +52,8 @@ public class CommentAdapter extends BaseAdapter {
         }else {
             viewProduct=view;
         }
-        comment comment=list.get(i);
-        ((TextView) viewProduct.findViewById(R.id.tvIDnguoidung)).setText("NGười Dùng: "+comment.getIdUser());
+        NoiDungComment comment=list.get(i);
+        ((TextView) viewProduct.findViewById(R.id.tvIDnguoidung)).setText("Tên: "+comment.getFullname());
         ((TextView) viewProduct.findViewById(R.id.comment)).setText(comment.getNoidung());
         ((TextView) viewProduct.findViewById(R.id.tvtime)).setText(comment.getNgay_gio());
         notifyDataSetChanged();
