@@ -6,6 +6,15 @@ public class User {
     String email;
     String password;
     String fullname;
+    String linkavatar;
+
+    public String getLinkavatar() {
+        return linkavatar;
+    }
+
+    public void setLinkavatar(String linkavatar) {
+        this.linkavatar = linkavatar;
+    }
 
     public int getId() {
         return idUser ;

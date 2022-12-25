@@ -16,15 +16,28 @@
         <action
             android:id="@+id/action_loginFragment_to_listTruyenTranh"
             app:destination="@id/listTruyenTranh" />
+        <action
+            android:id="@+id/action_loginFragment_to_quenMk"
+            app:destination="@id/quenpassFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="edu.fpt.apptruyentranh.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/quenpassFragment"
+        android:name="edu.fpt.apptruyentranh.quenpassFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_quenpass" >
+        <action
+            android:id="@+id/action_quenMk_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <activity
         android:id="@+id/listTruyenTranh"
         android:name="edu.fpt.apptruyentranh.ListTruyenTranh"
         android:label="activity_list_truyen_tranh"
-        tools:layout="@layout/activity_list_truyen_tranh" />
+        tools:layout="@layout/activity_list_truyen_tranh" >
+    </activity>
 </navigation>

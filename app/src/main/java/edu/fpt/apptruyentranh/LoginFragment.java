@@ -15,6 +15,7 @@ import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Handler;
 import android.os.UserHandle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,15 +36,16 @@ import java.util.regex.Pattern;
 import edu.fpt.apptruyentranh.retrofit.ApiAppDocTruyen;
 import edu.fpt.apptruyentranh.retrofit.RetrofitClient;
 import edu.fpt.apptruyentranh.utils.Utils;
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LoginFragment extends Fragment {
 
-    private TextView tvSingUp;
+    private TextView tvSingUp,tvquenmk;
     private Button btnLogin;
-
+    boolean isLogin=false;
 
     
     TextInputLayout textInputUser;
@@ -55,6 +57,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Paper.init(getContext());
         apiAppDocTruyen= RetrofitClient.getInstane(Utils.BASE_URL_hai).create(ApiAppDocTruyen.class);
 
     }
@@ -63,8 +66,6 @@ public class LoginFragment extends Fragment {
     public void onDestroy() {
         compositeDisposable.clear();
         super.onDestroy();
-
-
     }
 
     private boolean validateUser(){
@@ -118,7 +119,13 @@ public class LoginFragment extends Fragment {
                 mController.navigate(R.id.signUpFragment);
             }
         });
-
+        tvquenmk=view.findViewById(R.id.tvquenpass);
+        tvquenmk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mController.navigate(R.id.quenpassFragment);
+            }
+        });
         btnLogin = view.findViewById(R.id.btn_log_in);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,20 +133,31 @@ public class LoginFragment extends Fragment {
                 if (!validateUser() || !validatePassWord()){
                     return;
                 }else {
-                    checkLogin();
+                    String userName = textInputUser.getEditText().getText().toString().trim();
+                    String passWordInPut = textInputPassWord.getEditText().getText().toString().trim();
+                    checkLogin(userName,passWordInPut);
                 }
 
 
             }
         });
-        
+        if(Paper.book().read("islogin")!=null){
+            boolean flag=Paper.book().read("islogin");
+            if(flag){
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkLogin(Paper.book().read("email"),Paper.book().read("pass"));
+                    }
+                },1000);
+            }
+        }
         textInputUser = view.findViewById(R.id.text_in_put_user);
         textInputPassWord = view.findViewById(R.id.text_in_put_pass_word);
     }
 
-    private void checkLogin() {
-        String userName = textInputUser.getEditText().getText().toString().trim();
-        String passWordInPut = textInputPassWord.getEditText().getText().toString().trim();
+    private void checkLogin(String userName,String passWordInPut  ) {
+
 
 
         compositeDisposable.add(apiAppDocTruyen.getUser(userName,passWordInPut).subscribeOn(Schedulers.io())
@@ -153,10 +171,13 @@ public class LoginFragment extends Fragment {
                                     Toast.makeText(getContext(),userModel.getMessage(),Toast.LENGTH_SHORT).show();
                                     SharedPreferences preferences= getContext().getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor=preferences.edit();
-
-
                                     editor.putString("idUser",idUser);
                                     editor.commit();
+                                    isLogin=true;
+                                    Utils.user_current = userModel.getResult().get(0);
+                                    Paper.book().write("email", userName);
+                                    Paper.book().write("pass", passWordInPut);
+                                    Paper.book().write("islogin", isLogin);
                                     mController.navigate(R.id.listTruyenTranh);
                                 }
                                 else {

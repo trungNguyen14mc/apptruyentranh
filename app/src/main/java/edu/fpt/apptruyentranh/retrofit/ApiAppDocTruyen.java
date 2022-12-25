@@ -48,4 +48,9 @@ public interface ApiAppDocTruyen {
             @Field("iduser") int iduser,
             @Field("time") String time
     );
+    @POST("resetpass.php")
+    @FormUrlEncoded
+    Observable<UserModel> resetpass(
+            @Field("email") String email
+    );
 }
